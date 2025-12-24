@@ -28,7 +28,7 @@ body {
     z-index: 0;
 }
 
-/* Wrapper pour centrer le cadeau */
+/* Wrapper centré */
 .wrapper {
     position: relative;
     z-index: 1;
@@ -74,6 +74,19 @@ body {
     transition: opacity 1s, transform 1s;
 }
 
+/* Fade-in progressif pour chaque élément */
+.card .fade {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 1s forwards;
+}
+
+.card .fade:nth-child(1) { animation-delay: 0.2s; }
+.card .fade:nth-child(2) { animation-delay: 0.8s; }
+.card .fade:nth-child(3) { animation-delay: 1.4s; }
+.card .fade:nth-child(4) { animation-delay: 2s; }
+.card .fade:nth-child(5) { animation-delay: 2.6s; } /* pour le nouveau bouton */
+
 /* Glitch léger sur le titre */
 h1 {
     font-size: 2em;
@@ -103,6 +116,14 @@ p {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(255,0,0,0.5);
 }
+
+/* Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
 </head>
 <body>
@@ -116,13 +137,25 @@ p {
 
     <!-- Carte texte cachée -->
     <div class="card" id="content">
-        <div class="emoji">🎅🎄✨</div>
-        <h1>Ho ho ho, Joyeux Noël !</h1>
-        <p>Voici une super expérience à faire tous les trois,<br>
-           on dirait bien que cette fois c'est le monde à l'envers !!</p>
-        <p>Bisous 💕</p>
-        <a class="btn" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
+        <div class="emoji fade">🎅🎄✨</div>
+        <h1 class="fade">Ho ho ho… Joyeux Noël !</h1>
+        <p class="fade">
+            Cette année, la magie de Noël prend une tournure inattendue…  
+            Une aventure unique vous attend tous les trois, où le monde semble à l’envers et chaque instant réserve sa dose de surprises.
+        </p>
+        <p class="fade">
+            Préparez-vous à explorer l’inattendu, à rire, à vous émerveiller, et à partager des souvenirs inoubliables.  
+            Plongez dans une expérience où Noël rencontre l’étrange, où l’imagination n’a pas de limites, et où chaque détail cache un peu de magie… ou de mystère.
+        </p>
+        <p class="fade">
+            Bisous magiques 💕, et que l’aventure commence !
+        </p>
+        <a class="btn fade" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
             🎮 Découvrez l’expérience Stranger Things
+        </a>
+        <!-- Nouveau bouton Réserver -->
+        <a class="btn fade" href="https://calendly.com/ton-lien" target="_blank">
+            📅 Réserver une date
         </a>
     </div>
 </div>
