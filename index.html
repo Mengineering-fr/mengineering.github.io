@@ -1,14 +1,133 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Accès Grafana</title>
-  <meta http-equiv="refresh" content="0; url=https://valeri-stouthearted-superinformally.ngrok-free.dev/d/adr6kzq/vima-cockpit">
+<meta charset="UTF-8">
+<title>Joyeux Noël 🎄</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    /* 🖼️ Fond paysage */
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+        background: url("background.jpg") center/cover no-repeat;
+        overflow: hidden;
+        transform: scaleY(-1); /* Upside Down */
+        filter: blur(0.5px);   /* léger glitch */
+        animation: glitch 1s infinite;
+    }
+
+    /* Overlay sombre pour lisibilité */
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 0;
+    }
+
+    /* Carte principale */
+    .card {
+        position: relative;
+        z-index: 1;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(6px);
+        padding: 30px 25px;
+        border-radius: 16px;
+        max-width: 650px;
+        margin: auto;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeIn 1.5s forwards;
+    }
+
+    /* Emoji */
+    .emoji {
+        font-size: 2em;
+        margin-bottom: 10px;
+        opacity: 0;
+        animation: fadeIn 2s forwards 0.5s;
+    }
+
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 15px;
+        opacity: 0;
+        animation: fadeIn 2s forwards 1s;
+    }
+
+    p {
+        font-size: 1.2em;
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeIn 2s forwards 1.5s;
+    }
+
+    /* Bouton qui pulse */
+    .btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 26px;
+        background: #ffffff;
+        color: #c31432;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 30px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        animation: fadeIn 2s forwards 2s, pulse 2s infinite alternate;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.05); }
+    }
+
+    /* Glitch léger */
+    @keyframes glitch {
+        0% { transform: translate(0,0) scaleY(-1); }
+        20% { transform: translate(-2px,2px) scaleY(-1); }
+        40% { transform: translate(2px,-2px) scaleY(-1); }
+        60% { transform: translate(-1px,1px) scaleY(-1); }
+        80% { transform: translate(1px,-1px) scaleY(-1); }
+        100% { transform: translate(0,0) scaleY(-1); }
+    }
+</style>
 </head>
 <body>
-  <h2>Redirection en cours...</h2>
-  <p>Si la redirection ne marche pas, <a href="https://valeri-stouthearted-superinformally.ngrok-free.dev">clique ici</a>.</p>
+
+<div class="overlay"></div>
+
+<div class="card">
+    <div class="emoji">🎅🎄✨</div>
+    <h1>Ho ho ho, Joyeux Noël !</h1>
+    <p>Voici une super expérience à faire tous les trois,<br>
+       on dirait bien que cette fois c'est le monde à l'envers !!</p>
+    <p>Bisous 💕</p>
+    <a class="btn" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
+        🎮 Découvrez l’expérience Stranger Things
+    </a>
+</div>
+
+<!-- 🎵 Musique (à remplacer par un fichier légal MP3 ou lien) -->
+<audio autoplay loop>
+    <source src="musique.mp3" type="audio/mpeg">
+    Votre navigateur ne supporte pas la lecture audio.
+</audio>
+
 </body>
 </html>
+
 
 
