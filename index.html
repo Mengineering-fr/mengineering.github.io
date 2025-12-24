@@ -6,29 +6,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+    /* Body et fond animé */
     body {
         margin: 0;
         min-height: 100vh;
         font-family: Arial, sans-serif;
-        color: white;
         text-align: center;
-        background: url("background.jpg") center/cover no-repeat;
         overflow: hidden;
+        color: white;
+        background: url('background.jpg') center/cover no-repeat;
+        position: relative;
     }
 
-    /* Overlay sombre rouge pour ambiance */
+    /* Overlay sombre rouge */
     .overlay {
         position: absolute;
         inset: 0;
-        background: rgba(50,0,0,0.7); /* rouge foncé transparent */
+        background: rgba(50,0,0,0.7);
         z-index: 0;
+    }
+
+    /* Animation électrique / scintillement du fond */
+    .electric {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255,0,0,0.1), transparent 70%);
+        animation: flicker 2s infinite alternate;
+        z-index: 1;
+    }
+
+    @keyframes flicker {
+        0% { opacity: 0.05; }
+        25% { opacity: 0.15; }
+        50% { opacity: 0.08; }
+        75% { opacity: 0.12; }
+        100% { opacity: 0.05; }
     }
 
     /* Carte principale */
     .card {
         position: relative;
-        z-index: 1;
-        background: rgba(0,0,0,0.5); /* sombre semi-transparent */
+        z-index: 2;
+        background: rgba(0,0,0,0.5);
         backdrop-filter: blur(6px);
         padding: 30px 25px;
         border-radius: 16px;
@@ -39,7 +58,7 @@
         animation: fadeIn 1.5s forwards;
     }
 
-    /* Emoji */
+    /* Emoji et animations texte */
     .emoji {
         font-size: 2em;
         margin-bottom: 10px;
@@ -61,12 +80,12 @@
         animation: fadeIn 2s forwards 1.5s;
     }
 
-    /* Bouton qui pulse */
+    /* Bouton rouge qui pulse */
     .btn {
         display: inline-block;
         margin-top: 25px;
         padding: 12px 26px;
-        background: #ff3b3b; /* rouge vif */
+        background: #ff3b3b;
         color: #fff;
         text-decoration: none;
         font-weight: bold;
@@ -90,7 +109,6 @@
         100% { transform: scale(1.05); }
     }
 
-    /* Glitch léger sur texte */
     @keyframes glitchText {
         0% { text-shadow: 2px 0 #ff0000, -2px 0 #ff0000; }
         20% { text-shadow: -2px 0 #ff0000, 2px 0 #ff0000; }
@@ -104,6 +122,7 @@
 <body>
 
 <div class="overlay"></div>
+<div class="electric"></div>
 
 <div class="card">
     <div class="emoji">🎅🎄✨</div>
@@ -116,7 +135,7 @@
     </a>
 </div>
 
-<!-- Musique (optionnelle) -->
+<!-- 🎵 Musique auto-play -->
 <audio autoplay loop>
     <source src="musique.mp3" type="audio/mpeg">
     Votre navigateur ne supporte pas la lecture audio.
