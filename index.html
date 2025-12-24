@@ -6,121 +6,130 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        color: white;
-        background: url('background.jpg') center/cover no-repeat;
-        position: relative;
-        overflow: hidden;
-    }
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background: url('background.jpg') center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+}
 
-    /* Overlay rouge sombre mais transparent pour voir le fond */
-    .overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(50,0,0,0.4); /* moins opaque */
-        z-index: 0;
-    }
+/* Overlay sombre rouge */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(50,0,0,0.5);
+    z-index: 0;
+}
 
-    /* Carte principale */
-    .card {
-        position: relative;
-        z-index: 1;
-        background: rgba(0,0,0,0.5);
-        backdrop-filter: blur(6px);
-        padding: 30px 25px;
-        border-radius: 16px;
-        max-width: 650px;
-        margin: auto;
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeIn 1.5s forwards;
-    }
+/* Bouton cadeau */
+.gift-button {
+    position: relative;
+    z-index: 1;
+    margin-top: 40vh;
+    width: 120px;
+    height: 120px;
+    background: #ff3b3b;
+    border-radius: 20px;
+    border: 4px solid #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .emoji {
-        font-size: 2em;
-        margin-bottom: 10px;
-        opacity: 0;
-        animation: fadeIn 2s forwards 0.5s;
-    }
+.gift-button:hover {
+    transform: scale(1.1);
+}
 
-    h1 {
-        font-size: 2.2em;
-        margin-bottom: 15px;
-        opacity: 0;
-        animation: fadeIn 2s forwards 1s, glitchText 2s infinite;
-    }
+/* Carte texte cachée */
+.card {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    padding: 30px 25px;
+    border-radius: 16px;
+    max-width: 650px;
+    margin: 40px auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s, transform 1s;
+}
 
-    p {
-        font-size: 1.2em;
-        line-height: 1.6;
-        opacity: 0;
-        animation: fadeIn 2s forwards 1.5s;
-    }
+/* Glitch léger sur le titre */
+h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    text-shadow: 2px 0 #ff0000, -2px 0 #ff0000;
+}
 
-    /* Bouton rouge qui pulse */
-    .btn {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 12px 26px;
-        background: #ff3b3b;
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 30px;
-        transition: transform 0.2s, box-shadow 0.2s;
-        animation: fadeIn 2s forwards 2s, pulse 2s infinite alternate;
-    }
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
 
-    .btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 15px rgba(255,0,0,0.5);
-    }
+/* Bouton lien */
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 26px;
+    background: #ff3b3b;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-    /* Animations */
-    @keyframes fadeIn {
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.05); }
-    }
-
-    @keyframes glitchText {
-        0% { text-shadow: 2px 0 #ff0000, -2px 0 #ff0000; }
-        20% { text-shadow: -2px 0 #ff0000, 2px 0 #ff0000; }
-        40% { text-shadow: 2px 2px #ff0000, -2px -2px #ff0000; }
-        60% { text-shadow: -2px 2px #ff0000, 2px -2px #ff0000; }
-        80% { text-shadow: 2px -2px #ff0000, -2px 2px #ff0000; }
-        100% { text-shadow: 2px 0 #ff0000, -2px 0 #ff0000; }
-    }
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255,0,0,0.5);
+}
 </style>
 </head>
 <body>
 
 <div class="overlay"></div>
 
-<div class="card">
+<!-- Bouton cadeau -->
+<div class="gift-button" id="gift">🎁</div>
+
+<!-- Carte texte cachée -->
+<div class="card" id="content">
     <div class="emoji">🎅🎄✨</div>
     <h1>Ho ho ho, Joyeux Noël !</h1>
     <p>Voici une super expérience à faire tous les trois,<br>
        on dirait bien que cette fois c'est le monde à l'envers !!</p>
     <p>Bisous 💕</p>
-    <!-- Bouton principal : lance la musique ET ouvre le lien -->
-    <a class="btn" href="https://sandboxvr.com/experience/strangerthings" target="_blank" onclick="document.getElementById('bg-music').play();">
+    <a class="btn" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
         🎮 Découvrez l’expérience Stranger Things
     </a>
 </div>
 
-<!-- Musique : se lance après clic sur le bouton -->
+<!-- Musique -->
 <audio id="bg-music" loop>
     <source src="musique.mp3" type="audio/mpeg">
-    Votre navigateur ne supporte pas la lecture audio.
 </audio>
+
+<script>
+const gift = document.getElementById('gift');
+const content = document.getElementById('content');
+const music = document.getElementById('bg-music');
+
+// Au clic sur le cadeau
+gift.addEventListener('click', () => {
+    gift.style.display = 'none';           // Masquer le cadeau
+    content.style.opacity = '1';           // Afficher le texte
+    content.style.transform = 'translateY(0)';
+    music.play().catch(e => console.log("Musique bloquée :", e)); // Lancer la musique
+});
+</script>
 
 </body>
 </html>
