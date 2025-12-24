@@ -9,15 +9,12 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-}
-
-body {
+    min-height: 100%;
+    overflow-y: auto; /* autoriser le scroll si nécessaire */
     font-family: Arial, sans-serif;
     color: white;
     background: url('background.jpg') center/cover no-repeat;
     position: relative;
-    overflow: hidden;
 }
 
 /* Overlay sombre rouge */
@@ -32,10 +29,11 @@ body {
 .cadeau-wrapper {
     position: relative;
     z-index: 1;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 50px 0; /* espace pour mobile */
 }
 
 /* Bouton cadeau */
@@ -161,6 +159,7 @@ const music = document.getElementById('bg-music');
 gift.addEventListener('click', () => {
     gift.parentElement.style.display = 'none'; // Masquer le wrapper du cadeau
     content.style.opacity = '1';               // Afficher la carte
+
     // Fade-in progressif pour chaque enfant
     const children = content.querySelectorAll('.fade');
     children.forEach((el, index) => {
@@ -169,6 +168,7 @@ gift.addEventListener('click', () => {
             el.style.transform = 'translateY(0)';
         }, index * 500); // 0.5s entre chaque élément
     });
+
     music.play().catch(e => console.log("Musique bloquée :", e));
 });
 </script>
