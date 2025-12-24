@@ -68,13 +68,13 @@ body {
     padding: 30px 25px;
     border-radius: 16px;
     max-width: 650px;
-    margin: 40px auto;
+    margin-top: 30px; /* espace sous le cadeau */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s, transform 1s;
 }
 
-/* Fade-in progressif pour chaque élément */
+/* Fade-in progressif */
 .card .fade {
     opacity: 0;
     transform: translateY(10px);
@@ -85,7 +85,8 @@ body {
 .card .fade:nth-child(2) { animation-delay: 0.8s; }
 .card .fade:nth-child(3) { animation-delay: 1.4s; }
 .card .fade:nth-child(4) { animation-delay: 2s; }
-.card .fade:nth-child(5) { animation-delay: 2.6s; } /* pour le nouveau bouton */
+.card .fade:nth-child(5) { animation-delay: 2.6s; }
+.card .fade:nth-child(6) { animation-delay: 3.2s; }
 
 /* Glitch léger sur le titre */
 h1 {
@@ -99,10 +100,10 @@ p {
     line-height: 1.6;
 }
 
-/* Bouton lien */
+/* Boutons */
 .btn {
     display: inline-block;
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 12px 26px;
     background: #ff3b3b;
     color: #fff;
@@ -153,7 +154,6 @@ p {
         <a class="btn fade" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
             🎮 Découvrez l’expérience Stranger Things
         </a>
-        <!-- Nouveau bouton Réserver -->
         <a class="btn fade" href="https://calendly.com/ton-lien" target="_blank">
             📅 Réserver une date
         </a>
