@@ -28,15 +28,14 @@ body {
     z-index: 0;
 }
 
-/* Wrapper centré */
-.wrapper {
+/* Wrapper centré pour le cadeau */
+.cadeau-wrapper {
     position: relative;
     z-index: 1;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
 /* Bouton cadeau */
@@ -68,26 +67,16 @@ body {
     padding: 30px 25px;
     border-radius: 16px;
     max-width: 650px;
-    margin-top: 30px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s, transform 1s;
+    margin: 30px auto;
+    opacity: 0;  /* caché par défaut */
 }
 
-/* Fade-in progressif */
-.card .fade {
+/* Fade-in progressif via JS */
+.fade {
     opacity: 0;
     transform: translateY(10px);
-    animation: fadeIn 1s forwards;
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-.card .fade:nth-child(1) { animation-delay: 0.2s; }
-.card .fade:nth-child(2) { animation-delay: 0.8s; }
-.card .fade:nth-child(3) { animation-delay: 1.4s; }
-.card .fade:nth-child(4) { animation-delay: 2s; }
-.card .fade:nth-child(5) { animation-delay: 2.6s; }
-.card .fade:nth-child(6) { animation-delay: 3.2s; }
-.card .fade:nth-child(7) { animation-delay: 3.8s; }
 
 /* Glitch léger sur le titre */
 h1 {
@@ -118,53 +107,44 @@ p {
     transform: scale(1.05);
     box-shadow: 0 6px 15px rgba(255,0,0,0.5);
 }
-
-/* Animations */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 </style>
 </head>
 <body>
 
 <div class="overlay"></div>
 
-<!-- Wrapper centré -->
-<div class="wrapper">
-    <!-- Bouton cadeau -->
+<!-- Wrapper pour le cadeau centré -->
+<div class="cadeau-wrapper">
     <div class="gift-button" id="gift">🎁</div>
+</div>
 
-    <!-- Carte texte cachée -->
-    <div class="card" id="content">
-        <div class="emoji fade">🎅🎄✨</div>
-        <h1 class="fade">Ho ho ho… Joyeux Noël !</h1>
-        <p class="fade">
-            Cette année, la magie de Noël prend une tournure inattendue…  
-            Une aventure unique vous attend tous les trois, où le monde semble à l’envers et chaque instant réserve sa dose de surprises.
-        </p>
-        <p class="fade">
-            Préparez-vous à explorer l’inattendu, à rire, à vous émerveiller, et à partager des souvenirs inoubliables.  
-            Plongez dans une expérience où Noël rencontre l’étrange, où l’imagination n’a pas de limites, et où chaque détail cache un peu de magie… ou de mystère.
-        </p>
-        <p class="fade">
-            Que l’aventure commence !
-        </p>
-        <p class="fade">
-            Bisous et encore Joyeux Noël
-        </p>
-        <p class="fade">
-            Nico
-        </p>
-        <a class="btn fade" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
-            🎮 Découvrez l’expérience Stranger Things
-        </a>
-        <a class="btn fade" href="https://forms.gle/TM6rM2E5br1Bem6H8" target="_blank">
-            📅 Réserver une date
-        </a>
-    </div>
+<!-- Carte texte cachée -->
+<div class="card" id="content">
+    <div class="emoji fade">🎅🎄✨</div>
+    <h1 class="fade">Ho ho ho… Joyeux Noël !</h1>
+    <p class="fade">
+        Cette année, la magie de Noël prend une tournure inattendue…  
+        Une aventure unique vous attend tous les trois, où le monde semble à l’envers et chaque instant réserve sa dose de surprises.
+    </p>
+    <p class="fade">
+        Préparez-vous à explorer l’inattendu, à rire, à vous émerveiller, et à partager des souvenirs inoubliables.  
+        Plongez dans une expérience où Noël rencontre l’étrange, où l’imagination n’a pas de limites, et où chaque détail cache un peu de magie… ou de mystère.
+    </p>
+    <p class="fade">
+        Que l’aventure commence !
+    </p>
+    <p class="fade">
+        Bisous et encore Joyeux Noël
+    </p>
+    <p class="fade">
+        Nico
+    </p>
+    <a class="btn fade" href="https://sandboxvr.com/experience/strangerthings" target="_blank">
+        🎮 Découvrez l’expérience Stranger Things
+    </a>
+    <a class="btn fade" href="https://forms.gle/TM6rM2E5br1Bem6H8" target="_blank">
+        📅 Réserver une date
+    </a>
 </div>
 
 <!-- Musique -->
@@ -177,11 +157,19 @@ const gift = document.getElementById('gift');
 const content = document.getElementById('content');
 const music = document.getElementById('bg-music');
 
+// Au clic sur le cadeau
 gift.addEventListener('click', () => {
-    gift.style.display = 'none';           // Masquer le cadeau
-    content.style.opacity = '1';           // Afficher le texte
-    content.style.transform = 'translateY(0)';
-    music.play().catch(e => console.log("Musique bloquée :", e)); // Lancer la musique
+    gift.parentElement.style.display = 'none'; // Masquer le wrapper du cadeau
+    content.style.opacity = '1';               // Afficher la carte
+    // Fade-in progressif pour chaque enfant
+    const children = content.querySelectorAll('.fade');
+    children.forEach((el, index) => {
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, index * 500); // 0.5s entre chaque élément
+    });
+    music.play().catch(e => console.log("Musique bloquée :", e));
 });
 </script>
 
